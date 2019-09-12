@@ -5,4 +5,4 @@ lib
 dist
 .DS_Store
 .idea
-db.json
+src/db.json
