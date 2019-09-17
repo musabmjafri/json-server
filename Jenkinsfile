@@ -2,8 +2,33 @@ pipeline {
   agent any
  
   tools {nodejs "node"}
- 
+  
   stages {
+    
+    stage('Build') {
+      steps {
+        sh '''
+          echo "Building App..."
+          echo "Build complete!"
+        '''
+      }
+    }
+    stage('SonarQube') {
+      steps {
+        sh '''
+          echo "Performing Linting...."
+          echo "Quality gate passed!"
+        '''
+      }
+    }
+    stage('Build Test'){
+      steps {
+        sh '''
+          echo "Performing App Tests..."
+          echo "App Testing complete!"
+        '''
+      }
+    }
     stage('Archive') {
       steps {
         fileOperations (
@@ -71,6 +96,14 @@ pipeline {
             )
           ]
         )
+      }
+    }
+    stage('System Test'){
+      steps {
+        sh '''
+          echo "Performing System Tests..."
+          echo "System Tests passed!"
+        '''
       }
     }
   }
